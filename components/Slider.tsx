@@ -55,9 +55,9 @@ const StyledSlide = styled(SwiperSlide)`
   gap: 1rem;
 
   font-family: "PT Sans", sans-serif;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 1.875rem;
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
@@ -65,25 +65,21 @@ const StyledSlide = styled(SwiperSlide)`
 
   h2 {
     font-family: "Bebas Neue", sans-serif;
-    font-size: 25px;
-    font-weight: 400;
-    line-height: 30px;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+    font-size: 1.5rem;
     color: #3877ee;
   }
 `;
 
 const Button = styled.button`
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   background: white;
   border: none;
   border-radius: 50%; /* Если нужна круглая кнопка */
-  box-shadow: 0px 0px 15px 0px #3877ee1a;
+  box-shadow: 0px 0px 1rem 0px #3877ee1a;
   cursor: pointer;
   transition: opacity 0.3s ease;
 
