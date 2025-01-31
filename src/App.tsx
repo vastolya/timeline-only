@@ -1,5 +1,7 @@
 import React from "react";
 import { styled, createGlobalStyle } from "styled-components";
+import Slider from "../components/Slider";
+import Header from "../components/Header";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -7,6 +9,18 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   },
   h1 {
+    margin: 0;
+    padding: 0;
+  }
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+  p {
     margin: 0;
     padding: 0;
   }
@@ -43,45 +57,13 @@ const CrossedBox = styled.div`
   }
 `;
 
-const Title = styled.h1`
-  font-size: 3.625rem;
-  line-height: 4.25rem;
-  font-family: "PT Sans", serif, bold;
-   font-weight: bold;
-  color: #42567a;
-  width: 23rem;
-  height 7.5rem: 
-`;
-
-const TitleWrapper = styled.div`
-  position: relative;
-  font-size: 3.5rem;
-  font-weight: bold;
-  color: #2c3e50;
-  margin-left: 4.875rem;
-  margin-top: 10.625rem;
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: -4.875rem;
-    height: 100%;
-    width: 10px;
-    background: linear-gradient(to top, #4a69bd, #f6a6b1);
-  }
-`;
-
 const App: React.FC = () => {
   return (
     <>
       <GlobalStyle />
       <CrossedBox>
-        <TitleWrapper>
-          <Title>Исторические даты</Title>
-        </TitleWrapper>
-
-        <div>Circle</div>
-        <div>Slider</div>
+        <Header />
+        <Slider />
       </CrossedBox>
     </>
   );
