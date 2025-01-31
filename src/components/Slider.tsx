@@ -85,7 +85,7 @@ const Button = styled.button`
 
   &:disabled {
     opacity: 0;
-    cursor: not-allowed;
+    cursor: auto;
   }
 
   svg {

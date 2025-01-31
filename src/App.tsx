@@ -1,12 +1,15 @@
 import React from "react";
 import { styled, createGlobalStyle } from "styled-components";
-import Slider from "../components/Slider";
-import Header from "../components/Header";
+import Slider from "./components/Slider";
+import Header from "./components/Header";
+import AnimatedCircle from "./components/AnimatedCircle";
 
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
+    background: rgba(244, 245, 249, 1);
+
   },
   h1 {
     margin: 0;
@@ -45,7 +48,7 @@ const CrossedBox = styled.div`
     left: 0;
     width: 100%;
     height: 1px;
-    transform: translateY(-50%); /* выравнивание по вертикали */
+    transform: translateY(-50%);
   }
 
   &::after {
@@ -53,7 +56,7 @@ const CrossedBox = styled.div`
     left: 50%;
     height: 100%;
     width: 1px;
-    transform: translateX(-50%); /* выравнивание по горизонтали */
+    transform: translateX(-50%);
   }
 `;
 
@@ -63,6 +66,7 @@ const App: React.FC = () => {
       <GlobalStyle />
       <CrossedBox>
         <Header />
+        <AnimatedCircle />
         <Slider />
       </CrossedBox>
     </>
