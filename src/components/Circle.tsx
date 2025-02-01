@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { gsap } from "gsap";
 import CirclePoint from "./CirclePoint";
 import YearTitle from "./YearTitle";
-import { points } from "../../public/data";
+import { useTimeline } from "./TimelineContext";
 
 const Container = styled.div`
   position: relative;
@@ -71,12 +71,12 @@ const RotatingCircle = ({
 }: {
   points: { year: number; description: string }[][];
 }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const { activeIndex, setActiveIndex } = useTimeline();
   const [rotation, setRotation] = useState(30);
   const circleRef = useRef<HTMLDivElement>(null);
 
   const [displayedFirstYear, setDisplayedFirstYear] = useState(
-    points[0][0].year
+    points[0][activeIndex].year
   );
   const [displayedLastYear, setDisplayedLastYear] = useState(
     points[0][points[0].length - 1].year
@@ -177,7 +177,8 @@ const RotatingCircle = ({
 };
 
 const Circle = () => {
-  return <RotatingCircle points={points} />;
+  const { timelinePoints, setTimelinePoint } = useTimeline();
+  return <RotatingCircle points={timelinePoints} />;
 };
 
 export default Circle;

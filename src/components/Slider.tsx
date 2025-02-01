@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, forwardRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { gsap } from "gsap";
 import { Navigation } from "swiper/modules";
 import styled from "styled-components";
 import type { Swiper as SwiperType } from "swiper";
-import points from "../../public/data";
+import { useTimeline } from "./TimelineContext";
 
 const Container = styled.div`
   display: flex;
@@ -77,6 +78,9 @@ const Icon = styled.svg<{ $mirrored?: boolean }>`
 
 export default function Slider() {
   const swiperRef = useRef<SwiperType | null>(null);
+  const sliderRef = useRef<HTMLDivElement | null>(null);
+  const { activeIndex, setActiveIndex } = useTimeline();
+  const { timelinePoints, setTimelinePoint } = useTimeline();
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
 
@@ -84,6 +88,16 @@ export default function Slider() {
     setIsBeginning(swiper.isBeginning);
     setIsEnd(swiper.isEnd);
   };
+
+  useEffect(() => {
+    if (sliderRef.current) {
+      gsap.fromTo(
+        sliderRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 2, ease: "power3.out" }
+      );
+    }
+  }, [activeIndex]);
 
   return (
     <Container>
@@ -105,7 +119,7 @@ export default function Slider() {
           />
         </Icon>
       </Button>
-      <SliderWrapper>
+      <SliderWrapper ref={sliderRef}>
         <StyledSwiper
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           modules={[Navigation]}
@@ -113,14 +127,12 @@ export default function Slider() {
           spaceBetween={80}
           onSlideChange={handleSlideChange}
         >
-          {points.map(
-            (item: { year: number; description: string }[], index) => (
-              <StyledSlide key={index}>
-                <h2>{item[0].year}</h2>
-                <p>{item[0].description}</p>
-              </StyledSlide>
-            )
-          )}
+          {timelinePoints[activeIndex].map((item, index) => (
+            <StyledSlide key={index}>
+              <h2>{item.year}</h2>
+              <p>{item.description}</p>
+            </StyledSlide>
+          ))}
         </StyledSwiper>
       </SliderWrapper>
 

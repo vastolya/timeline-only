@@ -1,8 +1,10 @@
 import React from "react";
 import { styled, createGlobalStyle } from "styled-components";
+import Circle from "./components/Circle";
 import Slider from "./components/Slider";
 import Header from "./components/Header";
-import Circle from "./components/Circle";
+
+import { TimelineProvider } from "./components/TimelineContext";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -30,7 +32,9 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Box = styled.div`
-  width: 90rem;
+  position: relative;
+  min-width: 90rem;
+  max-width: 90rem;
   min-height: 100vh;
   max-height: 100%;
   border-left: 1px solid rgba(0, 0, 0, 0.1);
@@ -58,8 +62,10 @@ const App: React.FC = () => {
       <GlobalStyle />
       <EmptyDiv />
       <Header />
-      <Circle />
-      <Slider />
+      <TimelineProvider>
+        <Circle />
+        <Slider />
+      </TimelineProvider>
     </Box>
   );
 };
