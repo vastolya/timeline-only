@@ -25,7 +25,7 @@ const TitleWrapper = styled.div`
     left: -4.875rem;
     height: 100%;
     width: 10px;
-    background: linear-gradient(to top, #4a69bd, #f6a6b1);
+    background: linear-gradient(to top, #f6a6b1, #4a69bd);
   }
 `;
 
