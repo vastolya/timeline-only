@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useTimeline } from "./TimelineContext";
 
 interface PointProps {
   $isActive: boolean;
@@ -32,6 +33,7 @@ const Point = styled.div<PointProps>`
     transform: translate(-50%, -50%);
   }
   p {
+    display: flex;
     font-family: PT Sans;
     font-size: 1.25rem;
     font-weight: 400;
@@ -39,11 +41,25 @@ const Point = styled.div<PointProps>`
     text-align: center;
     color: rgba(66, 86, 122, 1);
     opacity: ${(props) => (props.$isActive ? "1" : "0")};
-    transition: opacity 0.2s ease, transform 0.3s ease, rotate 0.1s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease, rotate 0.1s ease;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(${(props) => -props.rotation}deg);
+  }
+  span {
+    opacity: ${(props) => (props.$isActive ? "1" : "0")};
+    transform: ${(props) => (props.$isActive ? "scale(1)" : "scale(0)")};
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    position: absolute;
+    left: 3rem;
+
+    font-family: PT Sans;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.875rem;
+    text-align: left;
+    white-space: nowrap;
   }
 
   &:hover p {
@@ -52,6 +68,7 @@ const Point = styled.div<PointProps>`
 `;
 
 function cirlcePoint({ index, pos, $activeIndex, rotation, onRotate }: any) {
+  const { timelinePoints } = useTimeline();
   return (
     <Point
       key={index}
@@ -63,7 +80,10 @@ function cirlcePoint({ index, pos, $activeIndex, rotation, onRotate }: any) {
       rotation={rotation}
       onClick={() => onRotate(index)}
     >
-      <p>{index + 1}</p>
+      <p>
+        {index + 1}
+        <span>{timelinePoints[index].category}</span>
+      </p>
     </Point>
   );
 }

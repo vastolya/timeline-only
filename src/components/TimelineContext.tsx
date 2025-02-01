@@ -1,19 +1,25 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import points from "../../public/data";
+import data from "../../public/data";
 
 interface TimelineContextType {
   activeIndex: number;
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
   timelinePoints: {
-    year: number;
-    description: string;
-  }[][];
+    category: string;
+    events: {
+      year: number;
+      description: string;
+    }[];
+  }[];
   setTimelinePoint: React.Dispatch<
     React.SetStateAction<
       {
-        year: number;
-        description: string;
-      }[][]
+        category: string;
+        events: {
+          year: number;
+          description: string;
+        }[];
+      }[]
     >
   >;
 }
@@ -38,7 +44,7 @@ export const TimelineProvider: React.FC<TimelineProviderProps> = ({
   children,
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [timelinePoints, setTimelinePoint] = useState(points);
+  const [timelinePoints, setTimelinePoint] = useState(data);
 
   return (
     <TimelineContext.Provider

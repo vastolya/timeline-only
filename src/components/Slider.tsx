@@ -127,7 +127,7 @@ export default function Slider() {
           spaceBetween={80}
           onSlideChange={handleSlideChange}
         >
-          {timelinePoints[activeIndex].map((item, index) => (
+          {timelinePoints[activeIndex].events.map((item, index) => (
             <StyledSlide key={index}>
               <h2>{item.year}</h2>
               <p>{item.description}</p>

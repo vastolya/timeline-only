@@ -69,17 +69,23 @@ const animateYear = (
 const RotatingCircle = ({
   points,
 }: {
-  points: { year: number; description: string }[][];
+  points: {
+    category: string;
+    events: {
+      year: number;
+      description: string;
+    }[];
+  }[];
 }) => {
   const { activeIndex, setActiveIndex } = useTimeline();
   const [rotation, setRotation] = useState(30);
   const circleRef = useRef<HTMLDivElement>(null);
 
   const [displayedFirstYear, setDisplayedFirstYear] = useState(
-    points[0][activeIndex].year
+    points[activeIndex].events[0].year
   );
   const [displayedLastYear, setDisplayedLastYear] = useState(
-    points[0][points[0].length - 1].year
+    points[activeIndex].events[points[activeIndex].events.length - 1].year
   );
 
   useEffect(() => {
@@ -94,10 +100,14 @@ const RotatingCircle = ({
       },
     });
 
-    animateYear(displayedFirstYear, points[0][0].year, setDisplayedFirstYear);
+    animateYear(
+      displayedFirstYear,
+      points[activeIndex].events[0].year,
+      setDisplayedFirstYear
+    );
     animateYear(
       displayedLastYear,
-      points[0][points[0].length - 1].year,
+      points[activeIndex].events[points[activeIndex].events.length - 1].year,
       setDisplayedLastYear
     );
   }, []);
@@ -123,12 +133,12 @@ const RotatingCircle = ({
     if (activeIndex !== index) {
       animateYear(
         displayedFirstYear,
-        points[index][0].year,
+        points[index].events[0].year,
         setDisplayedFirstYear
       );
       animateYear(
         displayedLastYear,
-        points[index][points[index].length - 1].year,
+        points[index].events[points[index].events.length - 1].year,
         setDisplayedLastYear
       );
     }
