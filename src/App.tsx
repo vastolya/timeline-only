@@ -2,7 +2,7 @@ import React from "react";
 import { styled, createGlobalStyle } from "styled-components";
 import Slider from "./components/Slider";
 import Header from "./components/Header";
-import AnimatedCircle from "./components/AnimatedCircle";
+import Circle from "./components/Circle";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -29,47 +29,38 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const CrossedBox = styled.div`
-  position: relative;
+const Box = styled.div`
   width: 90rem;
-  height: 67.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  min-height: 100vh;
+  max-height: 100%;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
   margin: auto;
 
-  &::before,
-  &::after {
+  &::before {
     content: "";
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-
-  &::before {
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    transform: translateY(-50%);
-  }
-
-  &::after {
-    top: 0;
     left: 50%;
-    height: 100%;
     width: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 100%;
     transform: translateX(-50%);
   }
 `;
 
+const EmptyDiv = styled.div`
+  height: 10.625rem;
+`;
+
 const App: React.FC = () => {
   return (
-    <>
+    <Box>
       <GlobalStyle />
-      <CrossedBox>
-        <Header />
-        <AnimatedCircle />
-        <Slider />
-      </CrossedBox>
-    </>
+      <EmptyDiv />
+      <Header />
+      <Circle />
+      <Slider />
+    </Box>
   );
 };
 

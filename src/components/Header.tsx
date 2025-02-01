@@ -1,5 +1,4 @@
-import React from "react";
-import { styled, createGlobalStyle } from "styled-components";
+import { styled } from "styled-components";
 
 const Title = styled.h1`
   font-size: 3.625rem;
@@ -17,15 +16,16 @@ const TitleWrapper = styled.div`
   font-weight: bold;
   color: #2c3e50;
   margin-left: 4.875rem;
-  margin-top: 10.625rem;
 
   &::before {
     content: "";
     position: absolute;
     left: -4.875rem;
-    height: 100%;
-    width: 10px;
+    top: 50%;
+    height: 7.5rem;
+    width: 0.5rem;
     background: linear-gradient(to top, #f6a6b1, #4a69bd);
+    transform: translateY(-50%);
   }
 `;
 

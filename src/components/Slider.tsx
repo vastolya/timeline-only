@@ -4,39 +4,13 @@ import "swiper/css";
 import { Navigation } from "swiper/modules";
 import styled from "styled-components";
 import type { Swiper as SwiperType } from "swiper";
-
-const mock = [
-  {
-    year: "2016",
-    text: "13 сентября — частное солнечное затмение, видимое в Южной Африке и части Антарктиды",
-  },
-  {
-    year: "2017",
-    text: "Телескоп «Хаббл» обнаружил самую удалённую из всех обнаруженных галактик, получившую обозначение GN-z11",
-  },
-  {
-    year: "2018",
-    text: "Компания Tesla официально представила первый в мире электрический грузовик Tesla Semi",
-  },
-  {
-    year: "2019",
-    text: "13 сентября — частное солнечное затмение, видимое в Южной Африке и части Антарктиды",
-  },
-  {
-    year: "2020",
-    text: "Телескоп «Хаббл» обнаружил самую удалённую из всех обнаруженных галактик, получившую обозначение GN-z11",
-  },
-  {
-    year: "2021",
-    text: "Компания Tesla официально представила первый в мире электрический грузовик Tesla Semi",
-  },
-];
+import points from "../../public/data";
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.25rem;
+  margin: 6rem 1.25rem;
 `;
 
 const SliderWrapper = styled.div`
@@ -97,8 +71,8 @@ const Button = styled.button`
   }
 `;
 
-const Icon = styled.svg<{ mirrored?: boolean }>`
-  ${({ mirrored }) => mirrored && "transform: scaleX(-1);"}
+const Icon = styled.svg<{ $mirrored?: boolean }>`
+  ${({ $mirrored }) => $mirrored && "transform: scaleX(-1);"}
 `;
 
 export default function Slider() {
@@ -118,7 +92,7 @@ export default function Slider() {
         onClick={() => swiperRef.current?.slidePrev()}
       >
         <Icon
-          mirrored
+          $mirrored
           viewBox="0 0 8 12"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -133,18 +107,20 @@ export default function Slider() {
       </Button>
       <SliderWrapper>
         <StyledSwiper
-          onSwiper={(swiper) => (swiperRef.current = swiper)} // не используем swiper.swiper
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
           modules={[Navigation]}
           slidesPerView="auto"
           spaceBetween={80}
           onSlideChange={handleSlideChange}
         >
-          {mock.map((item) => (
-            <StyledSlide>
-              <h2>{item.year}</h2>
-              <p>{item.text}</p>
-            </StyledSlide>
-          ))}
+          {points.map(
+            (item: { year: number; description: string }[], index) => (
+              <StyledSlide key={index}>
+                <h2>{item[0].year}</h2>
+                <p>{item[0].description}</p>
+              </StyledSlide>
+            )
+          )}
         </StyledSwiper>
       </SliderWrapper>
 
