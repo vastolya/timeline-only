@@ -4,7 +4,7 @@ import { useTimeline } from "./TimelineContext";
 
 interface PointProps {
   $isActive: boolean;
-  rotation: number;
+  $rotation: number;
 }
 
 const Point = styled.div<PointProps>`
@@ -45,7 +45,7 @@ const Point = styled.div<PointProps>`
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(${(props) => -props.rotation}deg);
+    transform: translate(-50%, -50%) rotate(${(props) => -props.$rotation}deg);
   }
   span {
     opacity: ${(props) => (props.$isActive ? "1" : "0")};
@@ -77,7 +77,7 @@ function cirlcePoint({ index, pos, $activeIndex, rotation, onRotate }: any) {
         left: pos.x,
       }}
       $isActive={index === $activeIndex}
-      rotation={rotation}
+      $rotation={rotation}
       onClick={() => onRotate(index)}
     >
       <p>
