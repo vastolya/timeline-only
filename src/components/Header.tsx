@@ -24,7 +24,11 @@ const TitleWrapper = styled.div`
     top: 50%;
     height: 7.5rem;
     width: 0.5rem;
-    background: linear-gradient(to top, #f6a6b1, #4a69bd);
+    background: linear-gradient(
+      to top,
+      rgba(56, 119, 238, 1),
+      rgba(239, 93, 168, 1)
+    );
     transform: translateY(-50%);
   }
 `;

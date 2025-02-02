@@ -79,8 +79,7 @@ const Icon = styled.svg<{ $mirrored?: boolean }>`
 export default function Slider() {
   const swiperRef = useRef<SwiperType | null>(null);
   const sliderRef = useRef<HTMLDivElement | null>(null);
-  const { activeIndex, setActiveIndex } = useTimeline();
-  const { timelinePoints, setTimelinePoint } = useTimeline();
+  const { activeIndex, timelinePoints } = useTimeline();
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
 

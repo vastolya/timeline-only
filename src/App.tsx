@@ -5,6 +5,7 @@ import Slider from "./components/Slider";
 import Header from "./components/Header";
 
 import { TimelineProvider } from "./components/TimelineContext";
+import Controller from "./components/Controller";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -64,6 +65,7 @@ const App: React.FC = () => {
       <Header />
       <TimelineProvider>
         <Circle />
+        <Controller />
         <Slider />
       </TimelineProvider>
     </Box>

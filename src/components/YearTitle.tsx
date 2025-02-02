@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 
 const YearText = styled.div<{ color: string }>`
@@ -16,8 +16,15 @@ interface YearTextProps {
   children: React.ReactNode;
 }
 
-function YearTitle({ color, children }: YearTextProps) {
-  return <YearText color={color}>{children}</YearText>;
-}
+// Используем forwardRef, чтобы передавать ref внутрь YearText
+const YearTitle = forwardRef<HTMLDivElement, YearTextProps>(
+  ({ color, children }, ref) => {
+    return (
+      <YearText color={color} ref={ref}>
+        {children}
+      </YearText>
+    );
+  }
+);
 
 export default YearTitle;
