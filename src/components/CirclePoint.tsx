@@ -47,10 +47,13 @@ const Point = styled.div<PointProps>`
     left: 50%;
     transform: translate(-50%, -50%) rotate(${(props) => -props.$rotation}deg);
   }
+
   span {
     opacity: ${(props) => (props.$isActive ? "1" : "0")};
     transform: ${(props) => (props.$isActive ? "scale(1)" : "scale(0)")};
-    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    transition: rotate 0.2 ease-out, opacity 0.2s ease-out,
+      transform 0.2s ease-out;
+    transition-delay: ${(props) => (props.$isActive ? "0.3s" : "0s")};
     position: absolute;
     left: 3rem;
 
