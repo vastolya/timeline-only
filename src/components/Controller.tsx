@@ -70,7 +70,7 @@ function Controller() {
         0{activeIndex + 1}/0{timelinePoints.length}
       </Text>
       <ButtonContainer>
-        <Button onClick={handlePrev} disabled={activeIndex === 0}>
+        <Button onClick={() => handlePrev()} disabled={activeIndex === 0}>
           <Icon
             $mirrored
             viewBox="0 0 8 12"
@@ -86,7 +86,7 @@ function Controller() {
           </Icon>
         </Button>
         <Button
-          onClick={handleNext}
+          onClick={() => handleNext()}
           disabled={activeIndex === timelinePoints.length - 1}
         >
           <Icon

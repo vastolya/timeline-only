@@ -4,7 +4,6 @@ import { gsap } from "gsap";
 import CirclePoint from "./CirclePoint";
 import YearTitle from "./YearTitle";
 import { useTimeline } from "./TimelineContext";
-import { log } from "node:console";
 
 const Container = styled.div`
   position: relative;
@@ -32,6 +31,7 @@ const CircleContainer = styled.div`
   border-radius: 50%;
   border: 1px solid rgba(66, 86, 122, 0.2);
   z-index: 9;
+  rotate: 30deg;
 `;
 
 const CenterDisplay = styled.div`
@@ -67,19 +67,6 @@ const RotatingCircle = ({
   const lastYearRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const initialRotation = 30;
-
-    gsap.to(circleRef.current, {
-      rotation: initialRotation,
-      duration: 1,
-      ease: "expo.out",
-      onUpdate: () => {
-        setRotation(initialRotation);
-      },
-    });
-  }, []);
-
-  useEffect(() => {
     const anglePerPoint = 360 / points.length;
     const targetRotation = -activeIndex * anglePerPoint + 30;
 
@@ -93,6 +80,18 @@ const RotatingCircle = ({
       duration: 1,
       ease: "expo.out",
     });
+
+    if (firstYearRef.current && !firstYearRef.current.textContent) {
+      firstYearRef.current.textContent = String(
+        points[activeIndex].events[0].year
+      );
+    }
+
+    if (lastYearRef.current && !lastYearRef.current.textContent) {
+      lastYearRef.current.textContent = String(
+        points[activeIndex].events[points[activeIndex].events.length - 1].year
+      );
+    }
 
     gsap.to(firstYearRef.current, {
       textContent: points[activeIndex].events[0].year,
@@ -123,38 +122,6 @@ const RotatingCircle = ({
       duration: 1,
       ease: "expo.out",
     });
-
-    gsap.to(
-      { value: Number(firstYearRef.current?.textContent) },
-      {
-        value: points[index].events[0].year,
-        duration: 1,
-        ease: "power2.out",
-        onUpdate: function () {
-          if (firstYearRef.current) {
-            firstYearRef.current.textContent = Math.round(
-              this.targets()[0].value
-            ).toString();
-          }
-        },
-      }
-    );
-
-    gsap.to(
-      { value: Number(lastYearRef.current?.textContent) },
-      {
-        value: points[index].events[points[index].events.length - 1].year,
-        duration: 1,
-        ease: "power2.out",
-        onUpdate: function () {
-          if (lastYearRef.current) {
-            lastYearRef.current.textContent = Math.round(
-              this.targets()[0].value
-            ).toString();
-          }
-        },
-      }
-    );
   };
 
   const calculatePositions = (count: number, radius = 265) => {
@@ -189,16 +156,14 @@ const RotatingCircle = ({
       <CenterDisplay>
         {activeIndex !== null && (
           <>
-            <YearTitle color={"rgba(56, 119, 238, 1)"} ref={firstYearRef}>
-              {points[activeIndex].events[0].year}
-            </YearTitle>
-            <YearTitle color={"rgba(239, 93, 168, 1)"} ref={lastYearRef}>
-              {
-                points[activeIndex].events[
-                  points[activeIndex].events.length - 1
-                ].year
-              }
-            </YearTitle>
+            <YearTitle
+              color={"rgba(56, 119, 238, 1)"}
+              ref={firstYearRef}
+            ></YearTitle>
+            <YearTitle
+              color={"rgba(239, 93, 168, 1)"}
+              ref={lastYearRef}
+            ></YearTitle>
           </>
         )}
       </CenterDisplay>
