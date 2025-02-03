@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { gsap } from "gsap";
 import CirclePoint from "./CirclePoint";
@@ -95,7 +95,7 @@ const RotatingCircle = ({
 
     gsap.to(firstYearRef.current, {
       textContent: points[activeIndex].events[0].year,
-      duration: 2,
+      duration: 1,
       ease: "power2.out",
       snap: { textContent: 1 },
     });
@@ -103,7 +103,7 @@ const RotatingCircle = ({
     gsap.to(lastYearRef.current, {
       textContent:
         points[activeIndex].events[points[activeIndex].events.length - 1].year,
-      duration: 2,
+      duration: 1,
       ease: "power2.out",
       snap: { textContent: 1 },
     });

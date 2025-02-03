@@ -31,7 +31,11 @@ const Button = styled.button`
   border: 1px solid rgba(66, 86, 122, 0.5);
   border-radius: 50%;
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+
+  &:hover {
+    background-color: white;
+  }
 
   &:disabled {
     opacity: 0.5;
