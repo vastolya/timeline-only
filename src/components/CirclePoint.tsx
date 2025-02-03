@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useTimeline } from "./TimelineContext";
+import { useTimeline } from "../context/TimelineContext";
 
 interface PointProps {
   $isActive: boolean;

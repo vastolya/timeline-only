@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { gsap } from "gsap";
 import CirclePoint from "./CirclePoint";
 import YearTitle from "./YearTitle";
-import { useTimeline } from "./TimelineContext";
+import { useTimeline } from "../context/TimelineContext";
 
 const Container = styled.div`
   position: relative;

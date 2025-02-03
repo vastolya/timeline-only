@@ -4,7 +4,7 @@ import Circle from "./components/Circle";
 import Slider from "./components/Slider";
 import Header from "./components/Header";
 
-import { TimelineProvider } from "./components/TimelineContext";
+import { TimelineProvider } from "./context/TimelineContext";
 import Controller from "./components/Controller";
 
 const GlobalStyle = createGlobalStyle`

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useTimeline } from "./TimelineContext";
+import { useTimeline } from "../context/TimelineContext";
 
 const Container = styled.div`
   display: grid;

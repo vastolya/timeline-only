@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { Navigation } from "swiper/modules";
 import styled from "styled-components";
 import type { Swiper as SwiperType } from "swiper";
-import { useTimeline } from "./TimelineContext";
+import { useTimeline } from "../context/TimelineContext";
 
 const Container = styled.div`
   display: flex;
